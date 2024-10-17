@@ -1,0 +1,8 @@
+flask
+flask_session
+pandas
+numpy
+datetime
+Jinja2
+werkzeug
+Pillow
