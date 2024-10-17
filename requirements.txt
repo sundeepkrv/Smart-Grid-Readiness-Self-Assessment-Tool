@@ -6,3 +6,4 @@ datetime
 Jinja2
 werkzeug
 Pillow
+gunicorn
