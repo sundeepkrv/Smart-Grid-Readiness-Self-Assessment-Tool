@@ -1,1 +1,70 @@
-
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');*/
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: "Poppins"; src: url('../fonts/Poppins-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; }
+body { font-family: "Poppins", sans-serif; }
+.sitetitle { background: linear-gradient(to right, #d3831f, #a83279); -webkit-text-fill-color: transparent; -webkit-background-clip: text; }
+.bgimg { background: url('../images/bgimg.png'); background-repeat: repeat; background-size: 50em; }
+.img-fluid { max-height: 70vh; }
+.img-fluid-sm { max-height: 55vh; }
+.navbar { background: #faf1e3; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; }
+.eyeicon { float: right; margin-right: 10px; margin-top: -40px; position: relative; z-index: 200; }
+.page { height: 100vh; }
+.page-1 { background: url('../images/bg-normal.png'); background-position: center; }
+.page-2 { background: url('../images/bg-flip.png'); background-position: center; }
+.card { width: 20%; margin: 5px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; }
+.card .l1 { background-color: #edf2fb; }
+.card .l2 { background-color: #e2eafc; }
+.card .l3 { background-color: #d7e3fc; }
+.card .l4 { background-color: #ccdbfd; }
+.card .l5 { background-color: #c1d3fe; }
+.form-check { padding: 5px; }
+.form-check-input { display: none; }
+.form-check-input+label { display: block; position: relative; padding-left: 35px; margin: 0 10px; font-size: 0.8rem; cursor: pointer; }
+.form-check-input+label:before { content: ''; display: block; width: 20px; height: 20px; border: 2px solid blue; position: absolute; left: 0; top: 3px; opacity: .6; transition: all .12s, border-color .08s; }
+.form-check-input:checked+label:before { width: 10px; top: 0px; left: 5px; border-radius: 0; opacity: 1; border-top-color: transparent; border-left-color: transparent; transform: rotate(45deg); pointer-events: none; }
+a { transition: .3s all ease; }
+a, a:hover { text-decoration: none !important; }
+.navbar-nav .nav-item .active { color: #008080 !important; font-weight: bold; }
+.navbar-nav .nav-item { cursor: pointer; }
+.btn { text-align: center; box-shadow: 0 0 20px #eee; color: white; border-radius: 10px; display: block; min-width: 100px; }
+.btn-grad { background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%); margin: 10px; padding: 10px; transition: 0.5s; background-size: 200% auto; }
+.btn-grad:hover { background-position: right center; text-decoration: none; color: white; }
+.resbtn { width: 350px; }
+.nav .nav-item button { font-size: 0.9rem; }
+.nav .nav-item button.active { background-color: transparent; color: #008080 !important; font-weight: bold; }
+.nav-link:hover { background-color: transparent; color: #0d6efd !important; }
+.nav .nav-item button.active::after { content: ""; border-bottom: 4px solid #008080; border-right: none; width: 100%; position: absolute; bottom: -1px; left: 0; border-radius: 5px 5px 0 0; }
+.nav .result button.active { background-color: transparent; color: #008080 !important; }
+.nav .result button.active::after { content: ""; border-right: 2px solid #008080; border-left: 2px solid #008080; border-bottom: none; height: 100%; position: absolute; top: 0; border-radius: 0; }
+.slide-right{ position: relative; animation: animateright 0.6s; }
+ul { margin: 0; }
+.subdomain { height: calc(85vh - 200px); overflow: hidden; overflow-y: auto; }
+@keyframes animateright { from { right: -1500px; opacity: 0; } to { right: 0; opacity: 1; } }
+.notehead { color: #008080; font-weight: 500; }
+.modal-body { font-size: 0.85rem; }
+.input-group-text { width: 50px; text-align: center; }
+tr th, tr td, dt-layout-row { font-size: 0.9rem; padding: 5px !important; vertical-align: middle; }
+.dt-input { margin-left: 10px !important; margin-right: 10px !important;  }
+.disabled { background: #efefef; pointer-events: none; }
+.dataTables_wrapper .dataTables_paginate a.paginate_button { margin: 0px; }
+.dt-container .dt-paging .dt-paging-button { padding: 0 !important; margin: 0 !important; }
+.footer { font-size: 0.8rem; box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px; background: linear-gradient(to left, #aa4b6b, #6b6b83, #3b8d99); bottom: 0; clear: both; position: fixed; width: 100%; }
+.chart { width: 800px; }
+.topbtn { z-index: 100; position: fixed; bottom: 50px; right: 30px; transition: all 0.3s ease; }
+@media print {
+	.noprint { visibility: hidden;}
+	.tab-content { width: 95%; position: absolute;}
+	.tab-content .tab-pane { display: block !important; opacity: 1 !important; visibility: visible !important; }
+    .pagebreak { clear: both; page-break-after: always; }
+    .printchart { margin-top: 100px; }
+    header { position: fixed !important; }
+}
+/*Vertical tabs example source - https://codepen.io/Gaurav-Rana-the-reactor*/
