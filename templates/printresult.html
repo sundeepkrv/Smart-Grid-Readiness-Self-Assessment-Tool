@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Print</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-5.3.2.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/fontawesome-6.5.2.all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/sgrsat.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+		<style type="text/css">
+			@page { size: A4; margin: 0; }
+		</style>
+	</head>
+	<body class="bg-body-tertiary">
+		<header class="navbar container-fluid d-flex justify-content-center rounded-5 sticky-top rounded-top-0">
+			<a href="{{url_for('projects')}}"><img src="/static/images/logo-hi.svg" style="max-width: 125px;" alt="NSGM Logo"> <img src="/static/images/sgrsatlogo.svg" style="max-width: 175px;" alt="SGRSAT Logo"></a>
+		</header>
+		<div class="container-fluid text-center printchart">
+			<div class="display-6 text-success my-3">Assessment Results</div>
+			<div class="text-nowrap text-primary mt-2"><i class="fa-solid fa-map-location mx-1"></i><strong class="mx-2">Project Details:</strong>{{pdata.area}}, {{pdata.district}}, {{pdata.state}}</div>
+			<div class="text-nowrap text-primary"><i class="fa-solid fa-user mx-1"></i><strong class="mx-2">Project PoC:</strong>{{pdata.pocname}}, {{pdata.pocdesig}}, {{pdata.poctel}}, {{pdata.pocemail}}</div>
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Organization<i class="fa-solid fa-building mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d1chart"></canvas></div>
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Network Planning<i class="fa-solid fa-network-wired mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d2chart"></canvas></div>
+		</div>
+		<div class="pagebreak"></div>
+		<div class="container-fluid text-center printchart">
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Grid Operations<i class="fa-solid fa-gear mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d3chart"></canvas></div>
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Revenue and Audit<i class="fa-solid fa-chart-simple mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d4chart"></canvas></div>
+		</div>
+		<div class="pagebreak"></div>
+		<div class="container-fluid text-center printchart">
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Consumers<i class="fa-solid fa-users mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d5chart"></canvas></div>
+			<div class="h5 my-2">Scores for <span class="h4 text-primary">Regulatory and Policy<i class="fa-solid fa-gavel mx-1"></i></span></div>
+			<div class="my-2 chart text-center mx-auto"><canvas id="d6chart"></canvas></div>
+		</div>
+		<div class="mb-5">&ensp;</div>
+		<div class="footer">
+			<footer class="text-white text-center">
+				<p class="m-1">&copy; 2024 All rights reserved. <strong>National Smart Grid Mission</strong>. Designed with ❤️ using Python-Flask</p>
+			</footer>
+		</div>
+		<script type="text/javascript" src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/fontawesome-6.5.2.all.min.js"></script>
+		<script type="text/javascript" src="/static/js/chartjs-4.4.0.umd.min.js"></script>
+		<script type="text/javascript" src="/static/js/chartjs-plugin-datalabels-2.2.0.min.js"></script>
+		<script type="text/javascript">
+			Chart.register(ChartDataLabels);
+			var labels = {
+				'd1labels': [['Vision and','Strategy'], ['Human','Resources'], ['Training and','Capacity Building'], ['Reporting and','Management','Information System']],
+				'd2labels': [['Load Growth','Study and','Network Expansion','Planning'], ['Asset Survey','and Geographic','Information System'], ['Substation','Modernization'], ['Distribution','System','Modernization'], ['Communication','System','Modernization'],['Asset Management','and Maintenance']],
+				'd3labels': [['Grid Observability','and Security'], ['Power Quality','Monitoring'], 'Outage Management', 'Demand Response'],
+				'd4labels': [['Consumer Metering','and Indexing'], ['Distribution Transformer','and Feeder Metering'], ['Meter Data Management','and Energy Audit'], 'Billing and Collection'],
+				'd5labels': [['Consumer Connection','Management'], ['Consumer Care','Infrastructure'], ['Consumer Engagement','Program'], 'Net Metering'],
+				'd6labels': ['Regulatory Interface', ['Data Privacy and Cyber Security']]
+			}
+			var scores = {{scores|tojson|safe}};
+			var ascores = scores[0];
+			var bscores = scores[1];
+			var tscores = scores[2];
+			var dchart, ctx;
+			var config = [];
+			$.each(['1','2','3','4','5','6'], function(_,i) {
+				var data = {
+					labels: labels['d'+i+'labels'],
+					datasets: [
+						{ axis:'x',label:" Current",data:ascores['D'+i],backgroundColor:'rgba(60,179,113,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30 },
+						{ axis:'x',label:" Baseline",data:bscores['D'+i],backgroundColor:'rgba(30,144,255,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30},
+						{ axis:'x',label:" Target",data:tscores['D'+i],backgroundColor:'rgba(255,99,132,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30 }
+					]
+				};
+				conf = {
+					type: 'bar',
+					data: data,
+					options: {
+						indexAxis: 'x',
+						plugins: { datalabels: { color: 'blue', anchor: 'end', align: 'end', offset: -8, font: { weight: 'bold' } } },
+						scales: {
+							y: { min: 0.0, max: 5.0, grid: { display: false } },
+							x: { grid: { display: false } }
+						}
+					}
+				};
+				config.push(conf);
+				ctx = document.getElementById('d'+i+'chart').getContext('2d');
+				dchart = new Chart(ctx, config[parseInt(i)-1]);
+			});
+			$(document).ready(function() { setTimeout(window.print,1000); });
+			window.onfocus = function () { setTimeout(window.close,0); };
+		</script>
+	</body>
+</html>

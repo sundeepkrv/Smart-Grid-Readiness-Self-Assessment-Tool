@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Manage Users</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-5.3.2.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/fontawesome-6.5.2.all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/dataTables-2.1.0.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/dataTables.bootstrap5-2.1.0.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/sgrsat.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+	</head>
+	<body class="bg-body-tertiary">
+		<nav class="navbar navbar-expand-lg rounded-5 rounded-top-0">
+			<div class="container-fluid mx-lg-5">
+				<a class="navbar-brand py-0" href="{{url_for('users')}}"><img src="/static/images/logo-hi.svg" style="max-width: 125px;" alt="NSGM Logo"> <img src="/static/images/sgrsatlogo.svg" style="max-width: 175px;" alt="SGRSAT Logo"></a>
+				<button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"><i class="fa-solid fa-bars"></i></button>
+				<div class="collapse navbar-collapse text-center" id="navbar">
+					<ul class="navbar-nav me-3 ms-auto">
+						<li class="nav-item"><a class="nav-link text-secondary active" href="{{url_for('users')}}"><i class="fa-solid fa-home mx-1"></i>All Users</a></li>
+						<li class="nav-item"><a class="nav-link text-secondary" href="{{url_for('adduser')}}"><i class="fa-solid fa-user-plus fa-flip-horizontal mx-1"></i>Add User</a></li>
+						<li class="nav-item"><a class="nav-link text-primary" href="{{url_for('adminlogout')}}"><i class="fa-solid fa-right-from-bracket mx-1"></i>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container mx-auto mt-3 row">
+			<div class="display-6 text-center text-primary">Manage Users</div>
+			<div class="table-responsive">
+				<table id="userstable" class="table table-striped">
+					<thead class="thead table-success p-2">
+						<tr>
+							<th class="text-center">Sl.</th>
+							<th>Username</th>
+							<th>Utility</th>
+							<th>State</th>
+							<th>NO Name</th>
+							<th>NO Designation</th>
+							<th>NO Contact</th>
+							<th>NO Email</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						{% for row in users %}
+						<tr>
+							<td class="text-center">{{loop.index}}</td>
+							<td>{{row.username}}</td>
+							<td>{{row.utility}}</td>
+							<td>{{row.state}}</td>
+							<td>{{row.nodalname}}</td>
+							<td>{{row.nodaldesig}}</td>
+							<td>{{row.nodaltel}}</td>
+							<td>{{row.nodalemail}}</td>
+							<td class="text-center"><a href="{{url_for('user', uid=row.username)}}"><i class="fa-solid fa-square-pen fa-2x text-warning"></i></a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="footer">
+			<footer class="sticky-bottom text-white text-center">
+				<p class="m-1">&copy; 2024 All rights reserved. <strong>National Smart Grid Mission</strong>. Designed with ❤️ using Python-Flask</p>
+			</footer>
+		</div>
+		<script type="text/javascript" src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/fontawesome-6.5.2.all.min.js"></script>
+		<script type="text/javascript" src="/static/js/dataTables-2.1.0.min.js"></script>
+		<script type="text/javascript" src="/static/js/dataTables.bootstrap5-2.1.0.min.js"></script>
+		<script type="text/javascript">
+			var table = $("#userstable").DataTable({ ordering: false });
+			if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SGR-SAT Admin Login</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-5.3.2.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/fontawesome-6.5.2.all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/sgrsat.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+	</head>
+	<body class="bgimg">
+		<div class="container my-4">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-8 col-lg-4">
+					<div class="card w-100 border rounded-4">
+						<div class="card-body p-2 p-xl-4 border rounded-4" style="background-image: linear-gradient(45deg, #fa709f 10%, #fee140 100%);">
+							<div class="text-center mb-2">
+								<span><img src="/static/images/logo-hi.svg" style="max-width: 150px;" alt="NSGM Logo"> <img src="/static/images/sgrsatlogo.svg" style="max-width: 200px;" alt="SGRSAT Logo"></span>
+								<div class="h2">Admin Login</div>
+							</div>
+							<form method="POST">
+								<div class="row gy-3">
+									<div class="col-12">
+										<div class="form-floating">
+											<input type="text" class="form-control" name="username" id="username" placeholder="Enter Admin Username" autocomplete="on" required>
+											<label for="username" class="form-label text-secondary">Enter Admin Username</label>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-floating">
+											<input type="password" class="form-control" name="password" id="password" placeholder="Enter Admin Password" required>
+											<label for="password" class="form-label text-secondary">Enter Admin Password</label>
+											<span class="eyeicon"><i class="text-danger fa-lg fa-solid fa-eye-slash"></i></span>
+										</div>
+									</div>
+									<div class="col-12 d-inline-flex justify-content-between align-items-center">
+										<img src="{{cimg}}" id="captcha" alt="Captcha Image">
+										<a class="me-1" href="{{url_for('adminlogin')}}" tabindex="-1"><i class="fa-solid fa-rotate fa-2x mx-1"></i></a>
+										<div class="form-floating">
+											<input type="text" class="form-control inputbox" name="captcha" id="captchabox" placeholder="Enter Captcha" required>
+											<label for="captchabox" class="form-label text-secondary">Enter Captcha</label>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="d-grid">
+											<button class="btn btn-grad btn-lg" type="submit">Log in</button>
+										</div>
+									</div>
+									<div class="col-12 text-center text-white">
+										<p class="mb-3">For credentiatls, write to <a class="text-white fw-bold link-underline link-underline-opacity-0 bg-primary bg-opacity-50" href="mailto:dir.npmu.nsgm@gov.in">&ensp;Director NPMU&ensp;</a></p>
+										<p class="m-1">&copy; 2024 All rights reserved.<br><strong>National Smart Grid Mission</strong>.<br>Designed with ❤️ using Python-Flask</p>
+									</div>
+									<div class="col-12 text-center"><a href="{{url_for('home')}}" class="text-muted"><i class="fa-solid fa-home mx-1"></i>Goto Home</a></div>
+								</div>
+							</form>
+							{% with msg = get_flashed_messages(with_categories=True) %}
+							{% if msg %}
+							{% for category, message in msg %}
+							<div class="alert alert-{{category}} fade show d-flex align-items-center justify-content-center my-2" role="alert">
+								<img src="/static/images/{{category}}.png" width="20" class="me-1"><strong>{{message}}</strong>
+							</div>
+							{% endfor %}
+							{% endif %}
+							{% endwith %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/fontawesome-6.5.2.all.min.js"></script>
+		<script type="text/javascript">
+			setTimeout(function() { $(".alert").alert('close'); }, 3000);
+			$(".eyeicon").on('click', function() {
+				$(".fa-lg").toggleClass("fa-eye fa-eye-slash");
+				if ($("#password").attr("type") == "password") { $("#password").attr("type", "text"); } else { $("#password").attr("type", "password"); }
+			});
+		</script>
+	</body>
+</html>

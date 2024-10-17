@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Results</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-5.3.2.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/fontawesome-6.5.2.all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/sgrsat.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+	</head>
+	<body class="bg-body-tertiary">
+		<nav class="navbar navbar-expand-lg rounded-5 rounded-top-0">
+			<div class="container-fluid mx-lg-5">
+				<a class="navbar-brand py-0" href="{{url_for('projects')}}"><img src="/static/images/logo-hi.svg" style="max-width: 125px;" alt="NSGM Logo"> <img src="/static/images/sgrsatlogo.svg" style="max-width: 175px;" alt="SGRSAT Logo"></a>
+				<button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"><i class="fa-solid fa-bars"></i></button>
+				<div class="collapse navbar-collapse text-center" id="navbar">
+					<ul class="navbar-nav me-3 ms-auto">
+						<li class="nav-item"><a class="nav-link text-secondary" href="{{url_for('projects')}}"><i class="fa-solid fa-home mx-1"></i>Projects</a></li>
+						<li class="nav-item"><a class="nav-link text-secondary" href="{{url_for('profile')}}"><i class="fa-solid fa-circle-user mx-1"></i>Profile</a></li>
+						<li class="nav-item"><a class="nav-link text-primary" href="{{url_for('logout')}}"><i class="fa-solid fa-right-from-bracket mx-1"></i>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid text-center mt-3">
+			<div class="display-6 text-success">Assessment Results</div>
+			<div class="row my-1 justify-content-center">
+				<div class="card w-auto px-5 rounded-pill bg-body-tertiary">
+					<div class="card-body text-primary p-2">
+						<div class="text-nowrap"><i class="fa-solid fa-map-location mx-1"></i><strong class="mx-2">Project Details:</strong>{{pdata.area}}, {{pdata.district}}, {{pdata.state}}</div>
+						<div class="text-nowrap"><i class="fa-solid fa-user mx-1"></i><strong class="mx-2">Project PoC:</strong>{{pdata.pocname}}, {{pdata.pocdesig}}, {{pdata.poctel}}, {{pdata.pocemail}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="row m-0 d-flex justify-content-center">
+				<div class="col-auto">
+					<form method="POST">
+						<button class="btn btn-grad resbtn text-nowrap" type="submit"><i class="fa-solid fa-list-check me-1"></i>Set Current Score as Baseline</button>
+					</form>
+				</div>
+				<div class="col-auto">
+					<a href="{{url_for('target', uid=pdata.projectcode)}}" class="btn btn-grad resbtn text-nowrap"><i class="fa-solid fa-crosshairs me-1"></i>Set Target Recommendations</a>
+				</div>
+				<div class="col-auto">
+					<a href="{{url_for('printresult', uid=pdata.projectcode)}}" target="_blank" rel="noopener noreferrer" class="btn btn-grad resbtn text-nowrap"><i class="fa-solid fa-print me-1"></i>Print Assessment Results</a>
+				</div>
+			</div>
+			<div class="row my-1 g-2">
+				<div class="container d-flex align-items-start">
+					<ul class="nav nav-pills flex-column nav-pills border-end border-2 me-1 align-items-end text-nowrap" id="pills-tab" role="tablist">
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative active" id="dtab1" data-bs-toggle="pill" data-bs-target="#d1" type="button" role="tab"><i class="fa-solid fa-building mx-1"></i>D1. Organization</button>
+						</li>
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative" id="dtab2" data-bs-toggle="pill" data-bs-target="#d2" type="button" role="tab"><i class="fa-solid fa-network-wired mx-1"></i>D2. Network Planning</button>
+						</li>
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative" id="dtab3" data-bs-toggle="pill" data-bs-target="#d3" type="button" role="tab"><i class="fa-solid fa-gear mx-1"></i>D3. Grid Operations</button>
+						</li>
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative" id="dtab4" data-bs-toggle="pill" data-bs-target="#d4" type="button" role="tab"><i class="fa-solid fa-chart-simple mx-1"></i>D4. Revenue and Audit</button>
+						</li>
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative" id="dtab5" data-bs-toggle="pill" data-bs-target="#d5" type="button" role="tab"><i class="fa-solid fa-users mx-1"></i>D5. Consumers</button>
+						</li>
+						<li class="nav-item result" role="presentation">
+							<button class="nav-link text-secondary position-relative" id="dtab6" data-bs-toggle="pill" data-bs-target="#d6" type="button" role="tab"><i class="fa-solid fa-gavel mx-1"></i>D6. Regulatory and Policy</button>
+						</li>
+					</ul>
+					<div class="tab-content border rounded-3 p-3 me-2 w-100 text-center" id="tabcontent">
+						<div class="tab-pane fade show active" id="d1" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Organization<i class="fa-solid fa-building mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d1chart"></canvas></div>
+						</div>
+						<div class="tab-pane fade" id="d2" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Network Planning<i class="fa-solid fa-network-wired mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d2chart"></canvas></div>
+						</div>
+						<div class="tab-pane fade" id="d3" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Grid Operations<i class="fa-solid fa-gear mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d3chart"></canvas></div>
+						</div>
+						<div class="tab-pane fade" id="d4" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Revenue and Audit<i class="fa-solid fa-chart-simple mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d4chart"></canvas></div>
+						</div>
+						<div class="tab-pane fade" id="d5" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Consumers<i class="fa-solid fa-users mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d5chart"></canvas></div>
+						</div>
+						<div class="tab-pane fade" id="d6" role="tabpanel">
+							<div class="h5">Scores for <span class="h4 text-primary">Regulatory and Policy<i class="fa-solid fa-gavel mx-1"></i></span></div>
+							<div class="chart text-center mx-auto"><canvas id="d6chart"></canvas></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<footer class="sticky-bottom text-white text-center">
+				<p class="m-1">&copy; 2024 All rights reserved. <strong>National Smart Grid Mission</strong>. Designed with ❤️ using Python-Flask</p>
+			</footer>
+		</div>
+		<script type="text/javascript" src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/fontawesome-6.5.2.all.min.js"></script>
+		<script type="text/javascript" src="/static/js/chartjs-4.4.0.umd.min.js"></script>
+		<script type="text/javascript" src="/static/js/chartjs-plugin-datalabels-2.2.0.min.js"></script>
+		<script type="text/javascript">
+			Chart.register(ChartDataLabels);
+			var labels = {
+				'd1labels': [['Vision and','Strategy'], ['Human','Resources'], ['Training and','Capacity Building'], ['Reporting and','Management','Information System']],
+				'd2labels': [['Load Growth','Study and','Network Expansion','Planning'], ['Asset Survey','and Geographic','Information System'], ['Substation','Modernization'], ['Distribution','System','Modernization'], ['Communication','System','Modernization'],['Asset Management','and Maintenance']],
+				'd3labels': [['Grid Observability','and Security'], ['Power Quality','Monitoring'], 'Outage Management', 'Demand Response'],
+				'd4labels': [['Consumer Metering','and Indexing'], ['Distribution Transformer','and Feeder Metering'], ['Meter Data Management','and Energy Audit'], 'Billing and Collection'],
+				'd5labels': [['Consumer Connection','Management'], ['Consumer Care','Infrastructure'], ['Consumer Engagement','Program'], 'Net Metering'],
+				'd6labels': ['Regulatory Interface', ['Data Privacy and Cyber Security']]
+			}
+			var scores = {{scores|tojson|safe}};
+			var ascores = scores[0];
+			var bscores = scores[1];
+			var tscores = scores[2];
+			var dchart, ctx;
+			var config = [];
+			$.each(['1','2','3','4','5','6'], function(_,i) {
+				var data = {
+					labels: labels['d'+i+'labels'],
+					datasets: [
+						{ axis:'x',label:" Current",data:ascores['D'+i],backgroundColor:'rgba(60,179,113,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30 },
+						{ axis:'x',label:" Baseline",data:bscores['D'+i],backgroundColor:'rgba(30,144,255,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30},
+						{ axis:'x',label:" Target",data:tscores['D'+i],backgroundColor:'rgba(255,99,132,0.4)',borderColor:'rgba(248,249,250)',borderWidth:3,barThickness:30 }
+					]
+				};
+				conf = {
+					type: 'bar',
+					data: data,
+					options: {
+						indexAxis: 'x',
+						interaction: { mode: 'index' },
+						plugins: { datalabels: { color: 'blue', anchor: 'end', align: 'end', offset: -8, font: { weight: 'bold' } }, tooltip: {callbacks: { title: (context) => { return context[0].label.replaceAll(',',' '); } } } },
+						scales: {
+							y: { min: 0.0, max: 5.0, grid: { display: false } },
+							x: { grid: { display: false } }
+						}
+					}
+				};
+				config.push(conf);
+			});
+			var ctx = document.getElementById('d1chart').getContext('2d');
+			dchart = new Chart(ctx, config[0]);
+			$('[id^="dtab"]').on('click', function() {
+				if (dchart) { dchart.destroy(); }
+				i = $(this).attr('id').slice(-1);
+				ctx = document.getElementById('d'+i+'chart').getContext('2d');
+				dchart = new Chart(ctx, config[parseInt(i)-1]);
+			});
+		</script>
+	</body>
+</html>

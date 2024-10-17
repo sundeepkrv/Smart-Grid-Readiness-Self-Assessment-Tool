@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SGR-SAT by NSGM</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-5.3.2.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/fontawesome-6.5.2.all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/sgrsat.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+	</head>
+	<body class="bg-body-tertiary overflow-hidden">
+		<nav class="navbar navbar-expand-lg rounded-5 rounded-top-0 fixed-top">
+			<div class="container-fluid mx-lg-5">
+				<a class="navbar-brand py-0" href="{{url_for('home')}}"><img src="/static/images/logo-hi.svg" style="max-width: 125px;" alt="NSGM Logo"> <img src="/static/images/sgrsatlogo.svg" style="max-width: 175px;" alt="SGRSAT Logo"></a>
+				<button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"><i class="fa-solid fa-bars"></i></button>
+				<div class="collapse navbar-collapse text-center" id="navbar">
+					<ul class="navbar-nav me-3 align-items-center ms-auto">
+						<li class="nav-item"><a class="nav-link active" data-bs-target="#hero"><i class="fa-solid fa-home mx-1"></i>Home</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#about"><i class="fa-solid fa-circle-info mx-1"></i>About</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#architecture"><i class="fa-solid fa-sitemap mx-1"></i>Architecture</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#domains"><i class="fa-solid fa-diagram-project fa-rotate-90 mx-1"></i>Domains</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#subdomains"><i class="fa-solid fa-diagram-next fa-rotate-270 mx-1"></i>Subdomains</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#levels"><i class="fa-solid fa-chart-simple mx-1"></i>Levels</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-target="#contactus"><i class="fa-solid fa-map-location-dot mx-1"></i>Contact Us</a></li>
+						<li class="nav-item"><a class="btn btn-grad btn-sm" href="{{url_for('login')}}"><i class="fa-solid fa-right-to-bracket mx-1"></i>Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div id="hero" class="page page-1 d-flex align-items-center">
+			<div class="container-fluid p-5">
+				<div class="row">
+					<div class="col-lg-6 d-flex flex-column justify-content-center">
+						<div class="display-5 fw-semibold my-3 sitetitle">Smart Grid Readiness -<br/> Self Assessment Tool</div>
+						<div class="h5 my-3">A common maturity assessment framework for DISCOMs to self-assess and understand their grid modernization journey, understand gaps in their areas of priorities and learn from each other's experiences.</div>
+						<div class="text-start">
+							<a href="" target="_blank" rel="noopener noreferrer" class="btn btn-grad mx-0 w-50">Tool Walkthrough<i class="fa-solid fa-arrow-right mx-1"></i></a>
+						</div>
+					</div>
+					<div class="col-lg-6 text-center">
+						<img src="/static/images/mainimg.png" class="img-fluid" alt="Assessment">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="about" class="page page-2 d-flex align-items-center">
+			<div class="container-fluid px-3">
+				<div class="row">
+					<div class="col-lg-7 text-center">
+						<div class="display-6 my-2 text-primary">Need for Maturity Mapping Tool</div>
+						<div class="my-2"><img src="/static/images/need.svg" class="img-fluid" alt="Maturity Mapping Need"></div>
+					</div>
+					<div class="col-lg-5 text-center">
+						<div class="display-6 my-2 text-primary">Objectives</div>
+						<div class="my-2"><img src="/static/images/objective.svg" class="img-fluid img-fluid-sm" alt="Objectives"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="architecture" class="page page-1 d-flex align-items-center">
+			<div class="container-fluid text-center px-1">
+				<div class="display-6 my-2 text-success">Architecture</div>
+				<div class="my-2"><img src="/static/images/architecture.svg" class="img-fluid" alt="Architecture"></div>
+			</div>
+		</div>
+		<div id="domains" class="page page-2 d-flex align-items-center">
+			<div class="container-fluid text-center px-1">
+				<div class="display-6 my-2 text-danger">Domains</div>
+				<div class="my-2"><img src="/static/images/domains.svg" class="img-fluid" alt="Domains"></div>
+			</div>
+		</div>
+		<div id="subdomains" class="page page-1 d-flex align-items-center">
+			<div class="container-fluid text-center px-1">
+				<div class="display-6 my-2 text-info">Subdomains</div>
+				<div class="my-2"><img src="/static/images/subdomains.svg" class="img-fluid" alt="Subdomains"></div>
+			</div>
+		</div>
+		<div id="levels" class="page page-2 d-flex align-items-center">
+			<div class="container-fluid text-center px-1">
+				<div class="display-6 my-2 text-primary">Assessment Levels</div>
+				<div class="my-2"><img src="/static/images/assessmentlevels.svg" class="img-fluid" alt="Assessment Levels"></div>
+			</div>
+		</div>
+		<div id="contactus" class="page d-flex align-items-center">
+			<div class="container-fluid text-center px-1">
+				<div class="display-6 my-2 text-success">Contact Us</div>
+				<div class="p lead">For creation of account, and related issues, reachout/write to us:</div>
+				<div class="d-flex justify-content-center">
+					<span class="lead"><a href="tel:0124-2864261"><i class="fa-solid fa-phone mx-1"></i>0124-2864261</a></span>
+					<span>&emsp;</span>
+					<span class="lead"><a href="mailto:dir.npmu.nsgm@gov.in"><i class="fa-solid fa-envelope mx-1"></i>dir.npmu.nsgm@gov.in</a></span>
+				</div>
+				<div class="my-2 py-2">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.8776971437233!2d77.0689240755153!3d28.453102975763162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d194490a0bb11%3A0x93bec42258e1fbcb!2sNational%20Smart%20Grid%20Mission!5e0!3m2!1sen!2sin!4v1727884557430!5m2!1sen!2sin" width="1200" height="300" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<footer class="sticky-bottom text-white text-center">
+				<p class="m-1">&copy; 2024 All rights reserved. <strong>National Smart Grid Mission</strong>. Designed with ❤️ using Python-Flask</p>
+			</footer>
+		</div>
+		<button class="nav-link d-none topbtn rounded-pill" data-bs-target="#hero"><i class="fa-solid fa-circle-chevron-up fa-2x" style="color: #008080;"></i></button>
+		<script type="text/javascript" src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/fontawesome-6.5.2.all.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){ $(this).scrollTop(0); });
+			$(window).scroll(function () { if ($(this).scrollTop() >= 100) { $(".topbtn").removeClass("d-none"); } else { $(".topbtn").addClass("d-none"); } });
+			$(".nav-link").on('click', function() {
+				ele = $(this).attr('data-bs-target');
+				$(ele).get(0).scrollIntoView();
+				$(".nav-item a").removeClass("active");
+				$(this).addClass("active");
+			});
+		</script>
+	</body>
+</html>
